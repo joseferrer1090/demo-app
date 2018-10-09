@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import config from './../../../services/config';
+import styled from 'styled-components';
+import createFragment from 'react-addons-create-fragment';
 import './login.css';
 
 const asyncLocalStorage = {
@@ -23,7 +25,8 @@ class Login extends React.Component {
 			email: '',
 			password: '',
 			loading: false,
-			loggedIn: false
+			loggedIn: false,
+			errors: []
 		};
 	}
 
@@ -88,7 +91,32 @@ class Login extends React.Component {
 	};
 
 	render() {
-		console.log('Render');
+		let button = this.state.loading ? (
+			<a className="btn btn-sm btn-success btn-block " type="button">
+				Login...
+				<i className="fa fa-spinner fa-pulse fa-1x fa-fw" />
+			</a>
+		) : (
+			<a
+				className="btn btn-sm btn-success btn-block "
+				type="button"
+				onClick={() => {
+					this.SubmitForm();
+				}}
+			>
+				Login
+			</a>
+		);
+
+		let errors =
+			this.state.errors.length > 0 ? (
+				<div className="text-center">
+					<code>{this.state.errors}</code>
+					<br />
+					<br />
+				</div>
+			) : null;
+		console.log(this.state.errors);
 		return (
 			<div className="container">
 				<div className="row" style={{ marginTop: '120px' }}>
@@ -99,6 +127,7 @@ class Login extends React.Component {
 							</div>
 							<div className="panel-body">
 								<form role="form" noValidate>
+									{errors}
 									<fieldset>
 										<div className="form-group">
 											<input
@@ -108,6 +137,7 @@ class Login extends React.Component {
 												value={this.state.email}
 												onChange={this._handleEmail}
 												autoComplete={'Email'}
+												autoFocus={true}
 											/>
 										</div>
 										<div className="form-group">
@@ -121,17 +151,8 @@ class Login extends React.Component {
 												autoComplete={'Password'}
 											/>
 										</div>
-										<button
-											className="btn btn-sm btn-success btn-block "
-											type="button"
-											onClick={() => {
-												this.SubmitForm();
-											}}
-										>
-											{' '}
-											Login{' '}
-										</button>
 									</fieldset>
+									{button}
 								</form>
 							</div>
 						</div>
