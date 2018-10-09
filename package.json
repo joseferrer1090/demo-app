@@ -6,6 +6,7 @@
   "dependencies": {
     "antd": "^3.0.0",
     "bootstrap": "^3.3.7",
+    "jwt-decode": "^2.2.0",
     "moment": "^2.19.3",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.4",
