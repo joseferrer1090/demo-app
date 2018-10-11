@@ -57,7 +57,12 @@ export default () => (
 			<Route exact path="/logout" component={Logout} />
 			{/* Seccion de rutas protected */}
 			<PrivateRoute path="/dashboard" component={Dashboard} />
-			<PrivateRoute path="/dashboard/addcontact" component={AddContact} />
+			<PrivateRoute
+				exact
+				strict
+				path="/user/addcontact"
+				component={AddContact}
+			/>
 			{/* Fin */}
 			<Route component={ErrorPage} />
 		</Switch>

@@ -43,7 +43,6 @@ class Register extends React.Component {
 			return formIsValid;
 		}
 		//Password
-		//Name
 		if (!fields['password']) {
 			formIsValid = false;
 			errors['password'] = 'No puede crear usuario sin password';

@@ -25,22 +25,9 @@ class Login extends React.Component {
 			email: '',
 			password: '',
 			loading: false,
-			loggedIn: false,
 			errors: []
 		};
 	}
-
-	_handleEmail = e => {
-		this.setState({
-			email: e.target.value
-		});
-	};
-
-	_handlePassword = e => {
-		this.setState({
-			password: e.target.value
-		});
-	};
 
 	SubmitForm() {
 		this.setState({
@@ -78,9 +65,10 @@ class Login extends React.Component {
 						});
 				} else if (response.status === 401) {
 					this.setState({
-						errors: data.error,
+						errors: data.message,
 						loading: false
 					});
+					console.log(data);
 				}
 			})
 		);
@@ -116,7 +104,7 @@ class Login extends React.Component {
 					<br />
 				</div>
 			) : null;
-		console.log(this.state.errors);
+
 		return (
 			<div className="container">
 				<div className="row" style={{ marginTop: '120px' }}>
@@ -132,22 +120,31 @@ class Login extends React.Component {
 										<div className="form-group">
 											<input
 												className="form-control"
+												name="email"
 												placeholder="yourmail@example.com"
 												type="text"
 												value={this.state.email}
-												onChange={this._handleEmail}
+												onChange={e => {
+													this.setState({ [e.target.name]: e.target.value });
+													console.log(this.state.email);
+												}}
 												autoComplete={'Email'}
 												autoFocus={true}
 											/>
 										</div>
+
 										<div className="form-group">
 											<input
 												id="currentPassword"
+												name="password"
 												className="form-control"
 												placeholder="Password"
 												type="password"
 												value={this.state.password}
-												onChange={this._handlePassword}
+												onChange={e => {
+													this.setState({ [e.target.name]: e.target.value });
+													console.log(this.state.password);
+												}}
 												autoComplete={'Password'}
 											/>
 										</div>
