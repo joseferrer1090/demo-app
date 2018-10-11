@@ -1,3 +1,11 @@
 input.error {
     border-color: red;
   }
+
+.text-input error {
+    color: red !important;
+}
+
+.input-feedback{
+    color: red;
+}

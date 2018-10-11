@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { DisplayFormikState } from './components/displayformateState.js';
+
 import './helper.css';
 
 class Register2 extends Component {
@@ -18,7 +20,9 @@ class Register2 extends Component {
 									<Formik
 										initialValues={({ email: '' }, { password: '' })}
 										validationSchema={Yup.object().shape({
-											email: Yup.string()
+											email: Yup.string(
+												'Error is not Email... please type email'
+											)
 												.email()
 												.required('Required'),
 											password: Yup.string().required('Password is required')
@@ -38,8 +42,8 @@ class Register2 extends Component {
 													<fieldset>
 														<div className="form-group">
 															<input
-																id={'email'}
-																placeholder={'Enter your email'}
+																id="email"
+																placeholder="Enter your email"
 																type="text"
 																value={values.email}
 																onChange={handleChange}
@@ -50,6 +54,12 @@ class Register2 extends Component {
 																		: 'form-control'
 																}
 															/>
+															{errors.email &&
+																touched.email && (
+																	<div className="input-feedback">
+																		{errors.email}
+																	</div>
+																)}
 														</div>
 														<div className="form-group">
 															<input
@@ -74,6 +84,7 @@ class Register2 extends Component {
 															Registrar
 														</button>
 													</fieldset>
+													<DisplayFormikState {...props} />
 												</form>
 											);
 										}}
