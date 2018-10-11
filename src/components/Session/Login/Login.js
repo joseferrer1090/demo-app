@@ -68,7 +68,7 @@ class Login extends React.Component {
 						errors: data.message,
 						loading: false
 					});
-					console.log(data);
+					// console.log(data);
 				}
 			})
 		);
