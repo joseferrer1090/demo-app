@@ -30,7 +30,7 @@ class Contacts extends Component {
 	}
 
 	componentWillMount() {
-		console.log(this.state.ID);
+		// console.log(this.state.ID);
 		this.getDataList();
 	}
 
@@ -49,7 +49,7 @@ class Contacts extends Component {
 					this.setState({
 						dataList: data.data
 					});
-					console.log(this.state.dataList);
+					// console.log(this.state.dataList);
 				} else {
 					console.log('Error in Fetch');
 				}
