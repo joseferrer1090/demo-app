@@ -126,7 +126,6 @@ class Login extends React.Component {
 												value={this.state.email}
 												onChange={e => {
 													this.setState({ [e.target.name]: e.target.value });
-													console.log(this.state.email);
 												}}
 												autoComplete={'Email'}
 												autoFocus={true}
@@ -143,7 +142,6 @@ class Login extends React.Component {
 												value={this.state.password}
 												onChange={e => {
 													this.setState({ [e.target.name]: e.target.value });
-													console.log(this.state.password);
 												}}
 												autoComplete={'Password'}
 											/>
