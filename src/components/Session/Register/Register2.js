@@ -68,13 +68,19 @@ class Register2 extends Component {
 																type="password"
 																value={values.password}
 																onChange={handleChange}
-																onBlur={handleBlur}
+																// onBlur={handleBlur}
 																className={
 																	errors.password && touched.password
 																		? 'form-control text-input error'
 																		: 'form-control'
 																}
 															/>
+															{errors.password &&
+																touched.password && (
+																	<div className="input-feedback">
+																		{errors.password}
+																	</div>
+																)}
 														</div>
 
 														<button
@@ -84,7 +90,7 @@ class Register2 extends Component {
 															Registrar
 														</button>
 													</fieldset>
-													<DisplayFormikState {...props} />
+													{/* <DisplayFormikState {...props} /> */}
 												</form>
 											);
 										}}
