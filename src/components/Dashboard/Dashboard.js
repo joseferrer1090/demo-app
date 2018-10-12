@@ -5,12 +5,17 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: ""
+      dataUSer: ""
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      dataUSer: JSON.parse(localStorage.getItem("user"))
+    });
+  }
+
   render() {
-    let userData = JSON.parse(localStorage.getItem("user"));
     return (
       <div>
         <Navbar />
@@ -19,7 +24,7 @@ class Dashboard extends Component {
             <div className="col-md-8 col-md-offset-2">
               <div className="jumbotron">
                 <h4>Dashbard Example</h4>
-                <p> {userData} </p>
+                <p> {this.state.dataUSer} </p>
                 <p>Probando el API</p>
               </div>
             </div>
