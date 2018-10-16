@@ -107,7 +107,6 @@ class Contacts extends Component {
 				}
 			})
 		);
-		(this.input.value = ' '), this.setState({ name: ' ', phone: ' ' });
 	};
 
 	render() {
@@ -146,9 +145,6 @@ class Contacts extends Component {
 										<br />
 										<div className="form-group">
 											<input
-												ref={input => {
-													this.input = input;
-												}}
 												className="form-control"
 												placeholder="Nombre"
 												name={'name'}
@@ -160,9 +156,6 @@ class Contacts extends Component {
 										</div>
 										<div className="form-group">
 											<input
-												ref={input => {
-													this.input = input;
-												}}
 												className="form-control"
 												placeholder="Telefono"
 												name={'phone'}
