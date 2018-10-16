@@ -9,8 +9,6 @@ import Dashboard from './src/components/Dashboard/Dashboard';
 import AddContact from './src/components/Dashboard/components/Contacts/Contacts';
 import Aux from './src/hoc/Aux'; //
 import ErrorPage from './src/errorpages/404/ErrorPage404';
-import Test from './src/components/Session/Register/Register2';
-import Example from './src/components/Session/Register/example';
 
 // Este metodo funciona para poder verificar si lo que se encuentra en localstorage es un token,
 // se encuentra encapsulado en un try - catch para el manejor de los errores, Previamente se debe instalar
@@ -54,7 +52,7 @@ export default () => (
 	<HashRouter>
 		<Switch>
 			<Route exact path="/" component={Login} />
-			<Route exact path="/register" component={Example} />
+			<Route exact path="/register" component={Register} />
 			{/* <Route exact path="/register2" component={Example} /> */}
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/logout" component={Logout} />
