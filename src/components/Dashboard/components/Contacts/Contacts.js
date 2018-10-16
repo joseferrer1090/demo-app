@@ -118,6 +118,7 @@ class Contacts extends Component {
 					<code>{this.state.errors}</code>
 				</div>
 			) : null;
+
 		return (
 			<div>
 				<NavBar />
@@ -190,26 +191,29 @@ class Contacts extends Component {
 						<div className="panel panel-default">
 							<div className="panel-heading">Mis contactos</div>
 							<div className="panel-body">
-								<BootstrapTable
-									data={this.state.dataList}
-									striped
-									hover
-									search={true}
-								>
-									<TableHeaderColumn isKey dataField={'ID'}>
-										{' '}
-										ID{' '}
-									</TableHeaderColumn>
-									<TableHeaderColumn dataField={'name'}>
-										Nombre
-									</TableHeaderColumn>
-									<TableHeaderColumn dataField={'phone'}>
-										Telefono
-									</TableHeaderColumn>
-									<TableHeaderColumn dataField={'user_id'}>
-										usuario_registro
-									</TableHeaderColumn>
-								</BootstrapTable>
+								<div className="table" style={{ fontSize: '12px' }}>
+									<BootstrapTable
+										data={this.state.dataList}
+										striped
+										hover
+										search={true}
+										pagination={true}
+									>
+										<TableHeaderColumn isKey dataField={'ID'} dataSort>
+											{' '}
+											ID{' '}
+										</TableHeaderColumn>
+										<TableHeaderColumn dataField={'name'} dataSort>
+											Nombre
+										</TableHeaderColumn>
+										<TableHeaderColumn dataField={'phone'}>
+											Telefono
+										</TableHeaderColumn>
+										<TableHeaderColumn dataField={'user_id'}>
+											usuario_registro
+										</TableHeaderColumn>
+									</BootstrapTable>
+								</div>
 							</div>
 						</div>
 					</div>
