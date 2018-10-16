@@ -1,64 +1,85 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, withFormik } from 'formik';
+import * as Yup from 'yup';
 
-const initialValues = {
-	email: '',
-	password: ''
+const UserForm = props => {
+	const {
+		values,
+		touched,
+		errors,
+		dirty,
+		isSubmitting,
+		handleChange,
+		setFieldValue,
+		handleBlur,
+		handleSubmit,
+		handleReset
+	} = props;
+
+	return (
+		<form className="p-5" onSubmit={handleSubmit}>
+			<h1>Hello this is form!</h1>
+			<div className="form-group">
+				<input
+					name="email"
+					type="text"
+					className={`form-control ${errors.email &&
+						touched.email &&
+						'is-invalid'}`}
+					value={values.email}
+					onChange={handleChange}
+					onBlur={handleBlur}
+				/>
+				{errors.email &&
+					touched.email && (
+						<div className="invalid-feedback">{errors.email}</div>
+					)}
+			</div>
+			<div className="form-group">
+				<input
+					name="password"
+					type="password"
+					className={`form-control ${errors.password &&
+						touched.password &&
+						'is-invalid'}`}
+					value={values.username}
+					onChange={handleChange}
+					onBlur={handleBlur}
+				/>
+				{errors.password &&
+					touched.password && (
+						<div className="invalid-feedback">{errors.password}</div>
+					)}
+			</div>
+			<button
+				type="submit"
+				className="btn btn-outline-primary"
+				disabled={isSubmitting}
+			>
+				{isSubmitting ? 'WAIT PLIZ' : 'CLICK ME'}
+			</button>
+		</form>
+	);
 };
 
-export default function FormSigFpirm() {
-	return (
-		<Formik
-			initialValues={initialValues}
-			validate={validate(getValidateSchema)}
-			onSubmit={onSubmit}
-			render={rendep}
-		/>
-	);
-}
+export default withFormik({
+	mapPropsToValues: props => ({
+		email: props.user.email,
+		password: props.user.password
+	}),
 
-function SignUpForm(props) {
-	const { isSubmitting, errors, handleChange, handleSubmit } = props;
+	validationSchema: Yup.object().shape({
+		email: Yup.string()
+			.email('Invalid email address')
+			.required('Email is required!'),
+		password: Yup.string().required('Please provide a valid password')
+	}),
 
-	return (
-		<div className="container">
-			<div className="row" style={{ marginTop: '120px' }}>
-				<div className="col-md-4 col-md-offset-4">
-					<div className="panel panel-default">
-						<div className="panel-heading">
-							<h3 className="panel-title">Registro con Api Carlos</h3>
-						</div>
-						<div className="panel-body">
-							<form role="form" noValidate>
-								<fieldset>
-									<div className="form-group">
-										<input type="text" name="email" onChange={handleChange} />
-										<span> {errors.email} </span>
-									</div>
-									<div className="form-group">
-										<input
-											type="password"
-											name="password"
-											onChange={handleChange}
-										/>
-										<span>{errors.password}</span>
-									</div>
-									<button onClick={handleSubmit}>
-										{isSubmitting ? 'Loading' : 'Sign Up'}
-									</button>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-}
-
-function onSubmit(values, { setSubmitting, setErrors }) {
-	setTimeout(() => {
-		console.log('User has been sucessfully saved!', values);
-		setSubmitting(false);
-	}, 2000);
-}
+	handleSubmit: (values, { setSubmitting }) => {
+		setTimeout(() => {
+			// submit them do the server. do whatever you like!
+			alert(JSON.stringify(values, null, 2));
+			setSubmitting(false);
+		}, 1000);
+	}
+})(UserForm);
