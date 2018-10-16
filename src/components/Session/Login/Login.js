@@ -147,9 +147,9 @@ class Login extends React.Component {
 											/>
 										</div>
 									</fieldset>
-									<hr />
+									<div className="clearfix" />
 									<div className="row">
-										<div className="col-md-6">
+										<div className="col-md-12">
 											<Link
 												to="/register"
 												className="btn btn-default btn-block"
@@ -157,8 +157,8 @@ class Login extends React.Component {
 												{' '}
 												Registro{' '}
 											</Link>
+											{button}
 										</div>
-										<div className="col-md-6">{button}</div>
 									</div>
 								</form>
 							</div>
