@@ -1,9 +1,10 @@
 import React from 'react';
-import { Formik, withFormik } from 'formik';
-import * as Yup from 'yup';
-import config from './../../../../services/config';
+import { Formik, withFormik } from 'formik'; // Libreria para la creacion del formulario revisar la documentacion !!!
+import * as Yup from 'yup'; // Libreria que se complemente con Formik para las validaciones
+import config from './../../../../services/config'; // configuracion donde tengo guardada la url de los servicios de API
 
 const UserForm = props => {
+	// En esta seccion llamo todas las porps que necesiate con Formik para la creacion del formuladio tener en cuenta la documentacion
 	const {
 		values,
 		touched,
@@ -114,14 +115,15 @@ const UserForm = props => {
 		</div>
 	);
 };
-
+/* Con esta seccion se crea asignan las props y los posibles campos del formulario que se van a validar con Yup */
 export default withFormik({
 	mapPropsToValues: props => ({
 		email: props.user.email,
 		password: props.user.password,
 		passwordConfirmation: props.user.passwordConfirmation
 	}),
-
+	/*  Esta metodo es nativo de Formik => pero se complementa con Yup realizar la validacion. en este caso solo se sobre escribe el metodo
+	con los campos que se vayan a utilizar y cada una de las funciones se puede mirar en las documentacion de Yup */
 	validationSchema: Yup.object().shape({
 		email: Yup.string()
 			.email('Invalid email address')
@@ -134,22 +136,23 @@ export default withFormik({
 		)
 	}),
 
+	/* Este metodo tambien se sobre escribe teniendo en cuenta los values de cada campo en el formulario mirar la documentacion de Formik  */
 	handleSubmit: (values, { setSubmitting }) => {
 		setTimeout(() => {
 			// submit them do the server. do whatever you like!
 			// alert(JSON.stringify(values, null, 2));
-			console.log(values.email);
-			console.log(values.password);
-			console.log(values.passwordConfirmation);
-			let partial = '/api/user/new';
+			console.log(values.email); // valor capturador en el formulario email => solo imprimo el dato para ver si se capturo de manera correcta
+			console.log(values.password); // valor capturado en el formulario password => solo imprimo
+			console.log(values.passwordConfirmation); // valor capturado en el formulario passwordconfirmation => solo imprimo
+			let partial = '/api/user/new'; // parte de la url donde envio los datos en forma de post para registrar el usuario
 			fetch(config.defaultURL + partial, {
 				method: 'POST',
 				headers: {
 					'content-type': 'Application/json'
 				},
 				body: JSON.stringify({
-					email: values.email,
-					password: values.password
+					email: values.email, // los values reemplazan a los state revisar la documentacion de Formik
+					password: values.password // los values reeplazan a los state revizar la documentacion de Formik
 				})
 			}).then(response =>
 				response.json().then(data => {
@@ -160,7 +163,7 @@ export default withFormik({
 					}
 				})
 			);
-			setSubmitting(false);
+			setSubmitting(false); // Este metodo de manera interna maneja un booleano para activar el boton de enviar los datos revisar la documentacion de formik
 		}, 1000);
 	}
 })(UserForm);
