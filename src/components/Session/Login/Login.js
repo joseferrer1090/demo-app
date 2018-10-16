@@ -147,7 +147,19 @@ class Login extends React.Component {
 											/>
 										</div>
 									</fieldset>
-									{button}
+									<hr />
+									<div className="row">
+										<div className="col-md-6">
+											<Link
+												to="/register"
+												className="btn btn-default btn-block"
+											>
+												{' '}
+												Registro{' '}
+											</Link>
+										</div>
+										<div className="col-md-6">{button}</div>
+									</div>
 								</form>
 							</div>
 						</div>

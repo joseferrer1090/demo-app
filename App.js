@@ -54,8 +54,8 @@ export default () => (
 	<HashRouter>
 		<Switch>
 			<Route exact path="/" component={Login} />
-			<Route exact path="/register" component={Register} />
-			<Route exact path="/register2" component={Example} />
+			<Route exact path="/register" component={Example} />
+			{/* <Route exact path="/register2" component={Example} /> */}
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/logout" component={Logout} />
 			{/* Seccion de rutas protected */}
