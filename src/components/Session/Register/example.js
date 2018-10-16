@@ -3,7 +3,8 @@ import UserForm from './components/UserForm';
 
 const userData = {
 	email: '',
-	password: ''
+	password: '',
+	passwordConfirmation: ''
 };
 
 const Example = props => {
