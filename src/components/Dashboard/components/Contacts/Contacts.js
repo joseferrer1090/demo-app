@@ -5,19 +5,6 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import NavBar from './../NavBar/NavBar';
 import config from './../../../../services/config';
 
-// const example = [
-//   {
-//     id: 1,
-//     name: "Product1",
-//     price: "100"
-//   },
-//   {
-//     id: 2,
-//     name: "Product2",
-//     price: "200"
-//   }
-// ];
-
 class Contacts extends Component {
 	constructor(props) {
 		super(props);
@@ -35,7 +22,6 @@ class Contacts extends Component {
 	}
 
 	componentWillMount() {
-		// console.log(this.state.ID);
 		this.getDataList();
 	}
 
@@ -60,7 +46,6 @@ class Contacts extends Component {
 					this.setState({
 						dataList: data.data
 					});
-					// console.log(this.state.dataList);
 				} else {
 					console.log('Error in Fetch');
 				}
@@ -98,11 +83,12 @@ class Contacts extends Component {
 						message: 'Registro con exito en la vase de datos '
 					});
 				} else {
-					// console.log("Error en el fetch");
 					this.setState({
-						errors: data.message
+						errors: data.message,
+						show: true,
+						modalTitle: 'Error !!!',
+						message: data.message
 					});
-					// mostrar el error con el sweetalert bootstrap con el error
 					console.log(this.state.errors);
 				}
 			})
@@ -118,7 +104,6 @@ class Contacts extends Component {
 					<code>{this.state.errors}</code>
 				</div>
 			) : null;
-
 		return (
 			<div>
 				<NavBar />
@@ -126,8 +111,8 @@ class Contacts extends Component {
 					custom
 					showCancel={false}
 					showConfirm={true}
-					confirmBtnText="OK"
-					confirmBtnBsStyle="primary"
+					confirmBtnText="ok"
+					confirmBtnBsStyle="danger"
 					show={this.state.show}
 					title={this.state.modalTitle}
 					onConfirm={() => this.closeSweet()}
