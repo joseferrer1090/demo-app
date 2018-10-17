@@ -154,8 +154,11 @@ export default withFormik({
 					email: values.email, // los values reemplazan a los state revisar la documentacion de Formik
 					password: values.password // los values reeplazan a los state revizar la documentacion de Formik
 				})
-			}).then(response =>
+			}).then((
+				response // Esta promesa me permite validar la data que viene desde el post para en caso que un 200 manda un alert del registo
+			) =>
 				response.json().then(data => {
+					// en cado de 401 error en console para que este limpio al usuario
 					if (response.ok) {
 						alert('Se registro usuario');
 					} else if (response === 401) {
