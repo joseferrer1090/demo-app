@@ -17,7 +17,7 @@ import ErrorPage from './src/errorpages/404/ErrorPage404';
 const isAuthenticated = () => {
 	const token = localStorage.getItem('auth_token');
 	try {
-		decode(token);
+		decode(token); // Peligro no utilizar para nada malo !!!!
 	} catch (error) {
 		return false;
 	}
