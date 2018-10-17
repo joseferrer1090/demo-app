@@ -37,15 +37,15 @@ const UserForm = props => {
 												type="text"
 												className={`form-control ${errors.email &&
 													touched.email &&
-													'is-invalid'}`}
-												value={values.email}
-												onChange={handleChange}
+													'is-invalid'}`} // Este rendering condicional me permite agregar las clases de bootstrap para los diferentes estados que va a tener el input
+												value={values.email} // Este valor de value es el atributo html del input pero en su interior llevar los values que formik crear para cargar los datos
+												onChange={handleChange} // Este handleChange metodo en javascript para capturar el dato tipado desde el input
 												onBlur={handleBlur}
 												placeholder={'email@mail.com'}
 											/>
 											{errors.email &&
 												touched.email && (
-													<div className="invalid-feedback">{errors.email}</div>
+													<div className="invalid-feedback">{errors.email}</div> // En este rendering condicional me permite agregar el texto de la validacion que se genera en el Yup
 												)}
 										</div>
 										{/* FIN */}
@@ -97,10 +97,10 @@ const UserForm = props => {
 										<button
 											type="submit"
 											className="btn btn-success btn-block"
-											disabled={isSubmitting}
+											disabled={isSubmitting} // Metodo booleano que me permite verificar el estado de activo o desactivo del boton
 										>
 											{isSubmitting ? (
-												<i className="fa fa-spinner" aria-hidden="true" />
+												<i className="fa fa-spinner" aria-hidden="true" /> // Este rendering condicional me permite agregar un efecto cuando se esta realizando el post
 											) : (
 												'Register'
 											)}
