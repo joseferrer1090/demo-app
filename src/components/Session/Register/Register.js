@@ -14,7 +14,8 @@ const userData = {
 const Example = props => {
 	return (
 		<div>
-			<UserForm user={userData} />
+			<UserForm user={userData} />{' '}
+			{/* Este componente hijo asocia todas las propiedades que se crean en la parte anterios */}
 		</div>
 	);
 };
